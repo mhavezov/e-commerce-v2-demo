@@ -10,7 +10,8 @@ import {
   RiUserLine,
   RiShoppingCartLine,
 } from 'react-icons/ri';
-
+import { Disclosure } from '@headlessui/react';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -22,47 +23,111 @@ import 'swiper/components/scrollbar/scrollbar.min.css';
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
+
 export default function Header() {
   return (
     <div>
       <header className='relative'>
         <Swiper spaceBetween={50} slidesPerView={1} navigation>
-          <nav className='absolute top-0 z-10 h-20 w-full'>
-            <div className='flex h-full justify-between items-center uppercase font-bold text-sm text-gray-50 hover:text-gray-500 hover:bg-gray-50 hover:opacity-100 transition-colors duration-300 ease-in font-body'>
-              <div className='ml-8 text-3xl'>
-                Logo <span className='text-pink-400'>.</span>
+          <Disclosure
+            as='nav'
+            className='absolute top-0 z-10 h-20 w-full'
+          >
+            {({ open }) => (
+              <div
+                className={classNames(
+                  open ? 'bg-gray-50 text-gray-500' : '',
+                  'flex h-14 lg:h-full w-full justify-between items-center uppercase font-bold text-sm text-gray-50 hover:text-gray-500 hover:bg-gray-50 hover:opacity-100 transition-colors duration-300 ease-in font-body'
+                )}
+              >
+                <div className='ml-8 text-3xl'>
+                  Logo <span className='text-pink-400'>.</span>
+                </div>
+                <div className='hidden lg:inline-flex space-x-4'>
+                  <a href='' className='hover:text-gray-900'>
+                    home
+                  </a>
+                  <a href='' className='hover:text-gray-900'>
+                    shop{'\u25be'}
+                  </a>
+                  <a href='' className='hover:text-gray-900'>
+                    template
+                  </a>
+                  <a href='' className='hover:text-gray-900'>
+                    contact
+                  </a>
+                  <a href='' className='hover:text-gray-900'>
+                    docs
+                  </a>
+                </div>
+
+                <div className='lg:hidden mr-8'>
+                  <Disclosure.Button className='focus:outline-none'>
+                    <span className='sr-only'>Open main menu</span>
+                    {open ? (
+                      <XIcon
+                        className='block h-6 w-6'
+                        aria-hidden='true'
+                      />
+                    ) : (
+                      <MenuIcon
+                        className='block h-6 w-6'
+                        aria-hidden='true'
+                      />
+                    )}
+                  </Disclosure.Button>
+                  <Disclosure.Panel
+                    as='div'
+                    className='md:hidden absolute top-14 left-0 right-0 bg-gray-50'
+                  >
+                    <div className='flex flex-col p-8 space-y-2 sm:px-3 w-full'>
+                      <a href='' className='hover:text-gray-900'>
+                        home
+                      </a>
+                      <a href='' className='hover:text-gray-900'>
+                        shop
+                      </a>
+                      <a href='' className='hover:text-gray-900'>
+                        template
+                      </a>
+                      <a href='' className='hover:text-gray-900'>
+                        contact
+                      </a>
+                      <a href='' className='hover:text-gray-900'>
+                        docs
+                      </a>
+                    </div>
+                    <div className='mr-8 flex justify-around py-8 text-2xl '>
+                      <a href='' className='hover:text-gray-900'>
+                        <RiSearchLine />
+                      </a>
+                      <a href='' className='hover:text-gray-900'>
+                        <RiUserLine />
+                      </a>
+                      <a href='' className='hover:text-gray-900'>
+                        <RiShoppingCartLine />
+                      </a>
+                    </div>
+                  </Disclosure.Panel>
+                </div>
+
+                <div className='hidden mr-8 lg:flex text-2xl space-x-4'>
+                  <a href='' className='hover:text-gray-900'>
+                    <RiSearchLine />
+                  </a>
+                  <a href='' className='hover:text-gray-900'>
+                    <RiUserLine />
+                  </a>
+                  <a href='' className='hover:text-gray-900'>
+                    <RiShoppingCartLine />
+                  </a>
+                </div>
               </div>
-              <div className='space-x-4'>
-                <a href='' className='hover:text-gray-900'>
-                  home{' '}
-                </a>
-                <a href='' className='hover:text-gray-900'>
-                  shop{'\u25be'}
-                </a>
-                <a href='' className='hover:text-gray-900'>
-                  template
-                </a>
-                <a href='' className='hover:text-gray-900'>
-                  contact
-                </a>
-                <a href='' className='hover:text-gray-900'>
-                  docs
-                </a>
-              </div>
-              <div className='mr-8 flex text-2xl space-x-4'>
-                <a href='' className='hover:text-gray-900'>
-                  <RiSearchLine />
-                </a>
-                <a href='' className='hover:text-gray-900'>
-                  {' '}
-                  <RiUserLine />
-                </a>
-                <a href='' className='hover:text-gray-900'>
-                  <RiShoppingCartLine />
-                </a>
-              </div>
-            </div>
-          </nav>
+            )}
+          </Disclosure>
 
           <SwiperSlide>
             <div

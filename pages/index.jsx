@@ -1,11 +1,11 @@
 import Header from '../components/Header';
-import Section from '../components/Section';
+import SectionCategories from '../components/SectionCategories';
 
 export default function Home() {
   return (
     <div>
       <Header />
-      <Section />
+      <SectionCategories />
     </div>
   );
 }

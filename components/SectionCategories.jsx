@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Section() {
+function SectionCategories() {
   return (
     <section className=' relative h-screen gap-2 grid mt-2 grid-cols-1 grid-rows-10 lg:grid-cols-6 lg:grid-rows-2'>
       <div
@@ -105,4 +105,4 @@ function Section() {
   );
 }
 
-export default Section;
+export default SectionCategories;
